@@ -1,0 +1,42 @@
+<div style="margin-left: auto; margin-right: auto">
+  <p id="registerFeedback"></p>
+</div>
+<div>
+  <h1>Register</h1>
+
+  <!-- TODO 18 -->
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" [formControl]="name">
+      <div *ngIf="name.errors">
+        <div *ngIf="name.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
+          <p>Pollas</p>
+          <div *ngIf="name.errors['required']">Name is required</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <label for="surname_1">Surname 1: </label>
+      <input type="text" [formControl]="surname_1">
+    </div>
+    <div>
+      <label for="surname_2">Surname 2: </label>
+      <input type="text" [formControl]="surname_2">
+    </div>
+    <div>
+      <label for="alias">Alias: </label>
+      <input type="text" [formControl]="alias">
+    </div>
+    <div>
+      <label for="birth_date">Birth date: </label>
+      <input type="date" [formControl]="birth_date">
+    </div>
+    <div>
+      <label for="password">Password: </label>
+      <input type="password" [formControl]="password">
+    </div>
+
+    <button type="submit">Save</button>
+  </form>
+</div>
