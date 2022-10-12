@@ -64,13 +64,12 @@
 
     <div>
       <label for="email">Email: </label>
-      <input type="text" [formControl]="email">
+      <input type="email" [formControl]="email">
 
       <span *ngIf="email.errors">
         <span *ngIf="email.errors && isValidForm != null && !isValidForm" [ngClass]="'error'">
-          <span *ngIf="email.errors['required']">Alias is required</span>
+          <span *ngIf="email.errors['required']">Email is required</span>
           <span *ngIf="email.errors['email']">Valid email is required</span>
-
         </span>
       </span>
     </div>

@@ -39,7 +39,6 @@ export class RegisterComponent implements OnInit {
 
   ) {
     // TODO 17
-
       this.registerUser = new UserDTO('', '', '', '', new Date(), '', '');
       this.isValidForm = null;
 
