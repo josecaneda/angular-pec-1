@@ -3,8 +3,10 @@ import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms'
 import { Router } from '@angular/router';
 import { UserDTO } from 'src/app/Models/user.dto';
 import { HeaderMenusService } from 'src/app/Services/header-menus.service';
+import { HeaderMenus } from 'src/app/Models/header-menus.dto';
 import { SharedService } from 'src/app/Services/shared.service';
 import { UserService } from 'src/app/Services/user.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-register',
@@ -27,68 +29,70 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   isValidForm: boolean | null;
 
+
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
     private sharedService: SharedService,
     private headerMenusService: HeaderMenusService,
     private router: Router
+
   ) {
     // TODO 17
 
-    this.registerUser = new UserDTO('', '', '', '', new Date(), '', '');
+      this.registerUser = new UserDTO('', '', '', '', new Date(), '', '');
+      this.isValidForm = null;
 
-    this.isValidForm = null;
-    this.name = new FormControl(this.registerUser.name, [ 
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(25)
-    ]);
+      this.name = new FormControl(this.registerUser.name, [ 
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(25)
+      ]);
 
-    this.surname_1 = new FormControl(this.registerUser.surname_1, [ 
-      Validators.required, Validators.minLength(5),
-      Validators.maxLength(25)
-    ]);
+      this.surname_1 = new FormControl(this.registerUser.surname_1, [ 
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(25)
+      ]);
 
-    this.surname_2 = new FormControl(this.registerUser.surname_2, [ 
-      Validators.minLength(5),
-      Validators.maxLength(25)
-    ]);
+      this.surname_2 = new FormControl(this.registerUser.surname_2, [ 
+        Validators.minLength(5),
+        Validators.maxLength(25)
+      ]);
 
-    this.alias = new FormControl(this.registerUser.alias, [ 
-      Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(25)
-    ]);
+      this.alias = new FormControl(this.registerUser.alias, [ 
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(25)
+      ]);
 
-    this.birth_date = new FormControl(this.registerUser.birth_date, Validators.required);
-    this.email = new FormControl(this.registerUser.email, [
-      Validators.required,
-      Validators.email]);
+      this.birth_date = new FormControl(this.registerUser.birth_date, Validators.required);
+      this.email = new FormControl(this.registerUser.email, [
+        Validators.required,
+        Validators.email
+      ]);
 
-    this.password = new FormControl(this.registerUser.password, [
-      Validators.minLength(8),
-      Validators.maxLength(16)
-    ]);
+      this.password = new FormControl(this.registerUser.password, [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.maxLength(16)
+      ]);
 
-  this.registerForm = this.formBuilder.group({
-    name: this.name,
-    surname_1: this.surname_1,
-    surname_2: this.surname_2,
-    alias: this.alias,
-    birth_date: this.birth_date,
-    password: this.password,
-  });
-
-
-
-    
+    this.registerForm = this.formBuilder.group({
+      name: this.name,
+      surname_1: this.surname_1,
+      surname_2: this.surname_2,
+      alias: this.alias,
+      email: this.email,
+      birth_date: this.birth_date,
+      password: this.password,
+    });
   }
 
   ngOnInit(): void {}
 
   async register(): Promise<void> {
-    /*
+    
     let responseOK: boolean = false;
     this.isValidForm = false;
     let errorResponse: any;
@@ -130,6 +134,7 @@ export class RegisterComponent implements OnInit {
       this.router.navigateByUrl('home');
     }
   }
-  */
-  }
+
+
 }
+
