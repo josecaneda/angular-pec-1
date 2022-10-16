@@ -1,0 +1,31 @@
+
+.posts-summary {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
+.post {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid lightgray;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    align-items: center;
+    box-shadow: 2px 2px 4px #000000;
+    max-width: 480px;   
+}
+
+p {
+    margin: .2rem;
+}
+
+.category {
+    border: 1px solid lightgray;
+    margin: .2rem;
+    padding: .4rem;
+    border-radius: 6px;
+    
+}

@@ -34,7 +34,7 @@ export class HeaderComponent implements OnInit {
   }
 
   home(): void {
-    
+    this.router.navigateByUrl('home');    
   }
 
   login(): void {

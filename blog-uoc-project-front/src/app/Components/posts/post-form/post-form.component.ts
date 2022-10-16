@@ -182,9 +182,10 @@ export class PostFormComponent implements OnInit {
   }
 
   checkSelectedCategories(category: CategoryDTO): boolean {
-
-    return this.post.categories!.some( c => category.categoryId === c.categoryId);
-
-
+    if (this.post.categories) {
+      return this.post.categories.some( c => category.categoryId === c.categoryId);
+    } else {
+      return false;
+    }
   }
 }

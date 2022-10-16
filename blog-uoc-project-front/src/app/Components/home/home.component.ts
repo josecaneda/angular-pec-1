@@ -20,9 +20,10 @@ export class HomeComponent {
     private localStorageService: LocalStorageService,
     private sharedService: SharedService,
     private router: Router,
-    private headerMenusService: HeaderMenusService
+    private headerMenusService: HeaderMenusService,
   ) {
-    this.showButtons = false;
+    // this.showButtons = false;
+    this.showButtons = true;
     this.loadPosts();
   }
 
@@ -37,6 +38,25 @@ export class HomeComponent {
   }
   private async loadPosts(): Promise<void> {
     // TODO 2
+    let errorResponse: any;
+    let responseOK: boolean = false;
+    const userId = this.localStorageService.get('user_id');
+    if (userId) {
+      try {
+        this.posts = await this.postService.getPosts();
+        responseOK = true;
+      } catch (error: any) {
+        errorResponse = error.error;
+        this.sharedService.errorLog(errorResponse);
+      }
+    }
+
+    await this.sharedService.managementToast(
+      'homeFeedback',
+      responseOK,
+      errorResponse
+    );
+
   }
 
   async like(postId: string): Promise<void> {
@@ -60,4 +80,5 @@ export class HomeComponent {
       this.sharedService.errorLog(errorResponse);
     }
   }
+
 }
